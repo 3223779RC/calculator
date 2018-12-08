@@ -5,20 +5,64 @@
   </head>
   <body>
     <h1>Calculator for speedrunning</h1>
-    <table>
-      <tr>
-        <td><input type="args"></td>
-        <td><span id="arrow">-></span></td>
-        <td><input type="results"></td>
+    <table height="100%" width="50%">
+      <tr width="100%">
+        <td width="45%">
+          <textarea id="args_area" style="height: 100%; width: 100%">
+Examples
++ 1 2 3 4 5
+-100 1 2 3 4 5
+</textarea>
+        </td>
+        <td width="10%" style="text-align: center"><span id="arrow">--></span></td>
+        <td width="45%">
+          <textarea id="results_area" style="height: 100%; width: 100%">
+
+15
+15/100
+</textarea>
+        </td>
       </tr>
     </table>
-    <input></input>
     <script>
-      sum = ary => {
+      const sum = ary => {
         s = 0;
         ary.forEach(e => s += e);
         return s;
       };
-    </script>
+      const calc = (results_area, value) => {
+        const results = [];
+        const args = value.split('\n');
+        args.forEach(e => {
+          if(e[0] === '+'){
+            const ary = e.slice(1, e.length).split(/\s+/).map(e => parseInt(e, 10) | 0);
+            results.push(sum(ary));
+          } else if(e[0] === '-') {
+            const ary = e.slice(1, e.length).split(/\s+/).map(e => parseInt(e, 10) | 0);
+            const max_hp = ary[0];
+            const args = ary.slice(1, ary.length);
+            results.push(sum(args) + ' / ' + max_hp);
+          } else {
+            results.push('');
+          }
+        });
+        results_area.value = results.join('\n');
+      };
+      
+      const ARGS_AREA = document.getElementById('args_area');
+      const RESULTS_AREA = document.getElementById('results_area');
+      
+      let prev_v = ARGS_AREA.value;
+      window.timer = 0;
+      ARGS_AREA.addEventListener('focus', () => {
+        clearInterval(window.timer);
+        window.timer = setInterval(() => {
+          const new_v = ARGS_AREA.value;
+          if(prev_v !== new_v) calc(RESULTS_AREA, new_v);
+          prev_v = new_v;
+        }, 10);
+      }, false);
+      ARGS_AREA.addEventListener('blur', () => {clearInterval(window.timer);}, false);
+     </script>
   </body>
 </html>
