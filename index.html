@@ -22,11 +22,7 @@ Examples
         </td>
         <td width="10%" style="text-align: center"><span id="arrow">--></span></td>
         <td width="45%">
-          <textarea id="results_area" style="height: 100%; width: 100%">
-
-15
-15/100
-</textarea>
+          <textarea id="results_area" style="height: 100%; width: 100%"></textarea>
         </td>
       </tr>
     </table>
@@ -57,6 +53,7 @@ Examples
       
       const ARGS_AREA = document.getElementById('args_area');
       const RESULTS_AREA = document.getElementById('results_area');
+      calc(RESULTS_AREA, ARGS_AREA.value);
       
       let prev_v = ARGS_AREA.value;
       window.timer = 0;
