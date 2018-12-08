@@ -41,10 +41,10 @@ Examples
         const args = value.split('\n');
         args.forEach(e => {
           if(e[0] === '+'){
-            const ary = e.slice(1, e.length).split(/\s+/).map(e => parseInt(e, 10) | 0);
+            const ary = e.slice(1, e.length).trim().split(/\s+/).map(e => parseInt(e, 10) | 0);
             results.push(sum(ary));
           } else if(e[0] === '-') {
-            const ary = e.slice(1, e.length).split(/\s+/).map(e => parseInt(e, 10) | 0);
+            const ary = e.slice(1, e.length).trim().split(/\s+/).map(e => parseInt(e, 10) | 0);
             const max_hp = ary[0];
             const args = ary.slice(1, ary.length);
             results.push(sum(args) + ' / ' + max_hp);
