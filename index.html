@@ -5,6 +5,20 @@
   </head>
   <body>
     <h1>Calculator for speedrunning</h1>
-    <script>console.log("hogehoge");</script>
+    <table>
+      <tr>
+        <td><input type="args"></td>
+        <td><span id="arrow">-></span></td>
+        <td><input type="results"></td>
+      </tr>
+    </table>
+    <input></input>
+    <script>
+      sum = ary => {
+        s = 0;
+        ary.forEach(e => s += e);
+        return s;
+      };
+    </script>
   </body>
 </html>
