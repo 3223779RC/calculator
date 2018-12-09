@@ -46,7 +46,7 @@ Examples
             const ary = e.slice(1, e.length).trim().split(/\s+/).map(e => parseInt(e, 10) | 0);
             const max_hp = ary[0];
             const args = ary.slice(1, ary.length);
-            results.push(sum(args) + ' / ' + max_hp);
+            results.push((max_hp - sum(args)) + ' / ' + max_hp);
           } else {
             results.push('');
           }
