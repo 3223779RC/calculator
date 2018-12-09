@@ -41,12 +41,12 @@ Examples
         args.forEach(e => {
           if(e[0] === '+'){
             const ary = e.slice(1, e.length).trim().split(/\s+/).map(e => parseInt(e, 10) | 0);
-            results.push(sum(ary));
+            results.push('合計: ' + sum(ary));
           } else if(e[0] === '-') {
             const ary = e.slice(1, e.length).trim().split(/\s+/).map(e => parseInt(e, 10) | 0);
             const max_hp = ary[0];
             const args = ary.slice(1, ary.length);
-            results.push((max_hp - sum(args)) + ' / ' + max_hp);
+            results.push('残り: ' + (max_hp - sum(args)) + ' / ' + max_hp);
           } else {
             results.push('');
           }
