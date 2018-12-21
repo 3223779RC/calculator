@@ -48,7 +48,7 @@ Examples
             const args = ary.slice(1, ary.length);
             results.push('残り: ' + (max_hp - sum(args)) + ' / ' + max_hp);
           } else {
-            results.push('');
+            results.push(e);
           }
         });
         results_area.value = results.join('\n');
